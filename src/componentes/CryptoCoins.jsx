@@ -4,7 +4,7 @@ import millify from 'millify';
 import { useGetCryptosCoinsQuery } from '../services/cryptoApi';
 import { Link, useLocation } from 'react-router-dom';
 
-const CryptoCoins = () => {
+const CryptoCoins = ({ theme }) => {
 	//current location
 	let { pathname } = useLocation();
 	//iniciate the fetching
@@ -25,6 +25,10 @@ const CryptoCoins = () => {
 		setDisplayData(filteredData);
 	}, [data, search]);
 
+	const darkModeColor = {
+		color: theme === 'dark' ? '#fff' : '',
+	};
+
 	return (
 		<div>
 			{pathname !== '/cryptocurrencies' ? (
@@ -36,7 +40,14 @@ const CryptoCoins = () => {
 						marginBottom: 15,
 					}}
 				>
-					<Typography.Title level={2} style={{ marginBottom: 'auto' }}>
+					<Typography.Title
+						level={2}
+						style={
+							theme === 'dark'
+								? { marginBottom: 'auto', color: '#a6adb4' }
+								: { marginBottom: 'auto' }
+						}
+					>
 						Top Cryptocurrencies
 					</Typography.Title>
 					<Button type="primary" onClick={() => setMoreCryptos(!moreCryptos)}>
@@ -45,7 +56,14 @@ const CryptoCoins = () => {
 				</Space>
 			) : (
 				<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-					<Typography.Title level={2} style={{ marginBottom: 5 }}>
+					<Typography.Title
+						level={2}
+						style={
+							theme === 'dark'
+								? { marginBottom: 5, color: '#a6adb4' }
+								: { marginBottom: 5 }
+						}
+					>
 						Cryptocurrencies
 					</Typography.Title>
 
@@ -67,27 +85,42 @@ const CryptoCoins = () => {
 						<Col xs={24} sm={12} lg={6} key={index}>
 							<Link to={`/crypto/${coin.id}`}>
 								<Card
-									style={{ width: '100%' }}
+									style={
+										theme === 'dark'
+											? {
+													width: '100%',
+													backgroundColor: '#092036',
+													borderColor: '#000',
+											  }
+											: { width: '100%' }
+									}
+									headStyle={
+										theme === 'dark' ? { borderColor: '#000', color: '#fff' } : {}
+									}
 									title={`${coin.rank}. ${coin.name}`}
 									hoverable
 									extra={<Avatar src={coin.iconUrl} />}
 									loading={isLoading}
 								>
-									<Typography.Text type="strong">
+									<Typography.Text style={darkModeColor} type="strong">
 										Current Price:{' '}
-										<Typography.Text>{millify(coin.price)}</Typography.Text>
+										<Typography.Text style={darkModeColor}>
+											{millify(coin.price)}
+										</Typography.Text>
 									</Typography.Text>
 									<br />
-									<Typography.Text type="strong">
+									<Typography.Text style={darkModeColor} type="strong">
 										Today:{' '}
 										<Typography.Text type={coin.change >= 0 ? 'success' : 'danger'}>
 											{millify(coin.change)}%
 										</Typography.Text>
 									</Typography.Text>
 									<br />
-									<Typography.Text type="strong">
+									<Typography.Text style={darkModeColor} type="strong">
 										Market Cap:{' '}
-										<Typography.Text>{millify(coin.marketCap)}</Typography.Text>
+										<Typography.Text style={darkModeColor}>
+											{millify(coin.marketCap)}
+										</Typography.Text>
 									</Typography.Text>
 								</Card>
 							</Link>

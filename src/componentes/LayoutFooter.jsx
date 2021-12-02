@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const LayoutFooter = () => {
 	return (
 		<div style={{ textAlign: 'center' }}>
-			CryptoBoard {new Date().getFullYear()} <br />
+			CryptoBoard @ {new Date().getFullYear()} <br />
 			<Space>
 				<Link to="/">Home</Link>
 				<Link to="/exchanges">Exchanges</Link>

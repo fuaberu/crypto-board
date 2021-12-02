@@ -3,7 +3,7 @@ import { Avatar, Button, Card, Col, Layout, Row, Typography } from 'antd';
 import { useGetNewsQuery } from '../services/newsApi';
 import moment from 'moment';
 
-const News = () => {
+const News = ({ theme }) => {
 	const [count, setCount] = useState(6);
 	const [disabled, setDisabled] = useState(false);
 
@@ -21,8 +21,16 @@ const News = () => {
 		}
 	};
 	return (
-		<Layout style={{ alignItems: 'center' }}>
-			<Typography.Title level={2}>Crypto News</Typography.Title>
+		<Layout
+			style={
+				theme === 'dark'
+					? { backgroundColor: '#011930', color: '#fff', alignItems: 'center' }
+					: { alignItems: 'center' }
+			}
+		>
+			<Typography.Title style={theme === 'dark' ? { color: '#fff' } : {}} level={2}>
+				Crypto News
+			</Typography.Title>
 			<Row gutter={[16, 16]}>
 				{data &&
 					data?.value.map((el, index) => {
@@ -30,7 +38,11 @@ const News = () => {
 							<Col xs={24} sm={12} ls={8} key={index}>
 								<a href={el.url} target="_blank" rel="noreferrer">
 									<Card
-										style={{ height: '100%' }}
+										style={
+											theme === 'dark'
+												? { height: '100%', backgroundColor: '#092036' }
+												: { height: '100%' }
+										}
 										bodyStyle={{
 											height: '100%',
 											display: 'flex',
@@ -39,10 +51,15 @@ const News = () => {
 										}}
 										hoverable
 									>
-										<Typography.Title level={4} style={{ whiteSpace: 'pre-wrap' }}>
+										<Typography.Title
+											level={4}
+											style={theme === 'dark' ? { color: '#fff' } : {}}
+										>
 											{el.name}
 										</Typography.Title>
-										<Typography.Paragraph style={{}}>
+										<Typography.Paragraph
+											style={theme === 'dark' ? { color: '#a6adb4' } : {}}
+										>
 											{el.description}
 										</Typography.Paragraph>
 										<div
@@ -53,13 +70,31 @@ const News = () => {
 												marginTop: 'auto',
 											}}
 										>
-											<div style={{ display: 'flex', alignItems: 'center' }}>
-												<Avatar src={el.provider[0].image.thumbnail.contentUrl} />
-												<Typography.Paragraph style={{ marginBottom: 0 }}>
+											<div
+												style={
+													theme === 'dark'
+														? { color: '#a6adb4', display: 'flex', alignItems: 'center' }
+														: { display: 'flex', alignItems: 'center' }
+												}
+											>
+												<Avatar src={el.provider[0].image.thumbnail.contentUrl} />{' '}
+												<Typography.Paragraph
+													style={
+														theme === 'dark'
+															? { color: '#a6adb4', marginBottom: 0 }
+															: { marginBottom: 0 }
+													}
+												>
 													{el.provider[0].name}
 												</Typography.Paragraph>
 											</div>
-											<Typography.Paragraph style={{ marginBottom: 0 }}>
+											<Typography.Paragraph
+												style={
+													theme === 'dark'
+														? { color: '#a6adb4', marginBottom: 0 }
+														: { marginBottom: 0 }
+												}
+											>
 												{moment(el.datePublished).fromNow()}
 											</Typography.Paragraph>
 										</div>

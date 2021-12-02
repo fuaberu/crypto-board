@@ -6,10 +6,12 @@ import {
 	HomeOutlined,
 	ReadOutlined,
 } from '@ant-design/icons';
-
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+	const theme = useSelector((state) => state.theme.value);
+
 	return (
 		<div className="nav-container">
 			<div className="logo-container">
@@ -17,7 +19,7 @@ const Navbar = () => {
 					<Link to="/">CryptoBoard</Link>
 				</Typography.Title>
 			</div>
-			<Menu theme="light">
+			<Menu theme={theme}>
 				<Menu.Item key={1} icon={<HomeOutlined />}>
 					<Link to="/">Home</Link>
 				</Menu.Item>

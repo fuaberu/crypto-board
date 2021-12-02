@@ -1,56 +1,69 @@
 import React from 'react';
-import { Card, Layout, Statistic } from 'antd';
+import { Card, Col, Layout, Row, Statistic, Typography } from 'antd';
 import millify from 'millify';
 import { useGetCryptosStatsQuery } from '../services/cryptoApi';
 
-const CryptosStats = () => {
+const CryptosStats = ({ theme }) => {
 	const { data, isLoading } = useGetCryptosStatsQuery();
 
-	const cardStyle = {
-		width: '20%',
+	const colorStyle = {
+		color: theme === 'dark' ? '#a6adb4' : '',
 		textAlign: 'center',
-		padding: '2rem 0',
+	};
+	const textStyle = {
+		color: theme === 'dark' ? '#a6adb4' : '',
+		fontSize: 30,
 	};
 
+	console.log(data);
 	return (
-		<Layout style={{ marginBottom: 30 }}>
-			<Card
-				title="Global Cryptocurrencies stats"
-				style={{ width: '100%' }}
-				loading={isLoading}
-			>
-				<Card.Grid style={cardStyle}>
-					<Statistic
-						title="Number of coins"
-						value={data ? millify(data?.data.totalCoins) : null}
-					/>
-				</Card.Grid>
-				<Card.Grid style={cardStyle}>
-					<Statistic
-						title="Markets"
-						value={data ? millify(data?.data.totalMarkets) : null}
-					/>
-				</Card.Grid>
-				<Card.Grid style={cardStyle}>
-					<Statistic
-						title="Exchanges"
-						value={data ? millify(data?.data.totalExchanges) : null}
-					/>
-				</Card.Grid>
-				<Card.Grid style={cardStyle}>
-					<Statistic
-						title="24h Volume"
-						value={data ? millify(data?.data.total24hVolume) : null}
-					/>
-				</Card.Grid>
-				<Card.Grid style={cardStyle}>
-					<Statistic
-						title="Market Cap"
-						value={data ? millify(data?.data.totalMarketCap) : null}
-					/>
-				</Card.Grid>
-			</Card>
-		</Layout>
+		<>
+			<Typography.Title style={colorStyle} level={2}>
+				Global Cryptocurrencies stats
+			</Typography.Title>
+			<Row style={{ marginBottom: 30 }} gutter={[16, 16]}>
+				<Col style={{ textAlign: 'center' }} xs={12} sm={5} lg={5}>
+					<Typography.Title style={colorStyle} level={5}>
+						Number of coins
+					</Typography.Title>
+					<Typography.Text style={textStyle}>
+						{data ? millify(data?.data.totalCoins) : null}
+					</Typography.Text>
+				</Col>
+				<Col style={{ textAlign: 'center' }} xs={12} sm={4} lg={5}>
+					<Typography.Title style={colorStyle} level={5}>
+						Markets
+					</Typography.Title>
+					<Typography.Text style={textStyle}>
+						{data ? millify(data?.data.totalMarkets) : null}
+					</Typography.Text>
+				</Col>
+				<Col style={{ textAlign: 'center' }} xs={12} sm={4} lg={4}>
+					<Typography.Title style={colorStyle} level={5}>
+						Exchanges
+					</Typography.Title>
+					<Typography.Text style={textStyle}>
+						{data ? millify(data?.data.totalExchanges) : null}
+					</Typography.Text>
+				</Col>
+				<Col style={{ textAlign: 'center' }} xs={12} sm={4} lg={5}>
+					<Typography.Title style={colorStyle} level={5}>
+						24h Volume
+					</Typography.Title>
+					<Typography.Text style={textStyle}>
+						{data ? millify(data?.data.total24hVolume) : null}
+					</Typography.Text>
+				</Col>
+				<Col style={{ textAlign: 'center' }} xs={12} sm={4} lg={5}>
+					<Typography.Title style={colorStyle} level={5}>
+						Market Cap
+					</Typography.Title>
+					<Typography.Text style={textStyle}>
+						{data ? millify(data?.data.totalMarketCap) : null}
+					</Typography.Text>
+				</Col>
+			</Row>
+		</>
 	);
 };
 
