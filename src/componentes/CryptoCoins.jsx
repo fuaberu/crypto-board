@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Button, Card, Col, Input, Row, Space, Typography } from 'antd';
+import { Avatar, Button, Card, Col, Input, Row, Space, Spin, Typography } from 'antd';
 import millify from 'millify';
 import { useGetCryptosCoinsQuery } from '../services/cryptoApi';
 import { Link, useLocation } from 'react-router-dom';
@@ -28,6 +28,8 @@ const CryptoCoins = ({ theme }) => {
 	const darkModeColor = {
 		color: theme === 'dark' ? '#fff' : '',
 	};
+
+	if (isLoading) return <Spin size="large" />;
 
 	return (
 		<div>

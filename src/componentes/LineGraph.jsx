@@ -11,6 +11,7 @@ import {
 	Tooltip,
 	Legend,
 } from 'chart.js';
+import { Spin } from 'antd';
 
 ChartJS.register(
 	CategoryScale,
@@ -28,9 +29,7 @@ const LineGraph = ({ coinId, period, color }) => {
 	const coinPrice = [];
 	const timestamps = [];
 
-	if (isFetching) {
-		return 'loading';
-	}
+	if (isFetching) return <Spin size="large" />;
 
 	data?.data.history.forEach((element) => {
 		coinPrice.push(element.price);

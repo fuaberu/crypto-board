@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Layout, Row, Statistic, Typography } from 'antd';
+import { Col, Row, Spin, Typography } from 'antd';
 import millify from 'millify';
 import { useGetCryptosStatsQuery } from '../services/cryptoApi';
 
@@ -15,7 +15,8 @@ const CryptosStats = ({ theme }) => {
 		fontSize: 30,
 	};
 
-	console.log(data);
+	if (isLoading) return <Spin size="large" />;
+
 	return (
 		<>
 			<Typography.Title style={colorStyle} level={2}>
