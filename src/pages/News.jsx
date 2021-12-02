@@ -71,7 +71,7 @@ const News = () => {
 			</Row>
 			<Button
 				onClick={() => increseCount()}
-				style={{ width: 105, marginTop: 16 }}
+				style={{ minWidth: 105, marginTop: 16 }}
 				type="primary"
 				disabled={disabled}
 				loading={isFetching}

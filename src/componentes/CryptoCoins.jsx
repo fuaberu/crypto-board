@@ -66,7 +66,7 @@ const CryptoCoins = () => {
 				{displayData &&
 					displayData.map((coin, index) => (
 						<Col xs={24} sm={12} lg={6} key={index}>
-							<Link to={`/crypto/${coin.symbol}`}>
+							<Link to={`/crypto/${coin.id}`}>
 								<Card
 									style={{ width: '100%' }}
 									title={`${coin.rank}. ${coin.name}`}
