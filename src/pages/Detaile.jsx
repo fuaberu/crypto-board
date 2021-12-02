@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, Layout, Select, Space, Spin, Typography } from 'antd';
 import { useParams } from 'react-router';
 import LineGraph from '../componentes/LineGraph';
@@ -26,8 +26,6 @@ const Detaile = () => {
 	const { data, isFetching } = useGetCryptosDetailesQuery(id);
 
 	if (isFetching) return <Spin size="large" />;
-
-	console.log(id, data);
 
 	const gridStyle = {
 		width: window.innerWidth > 992 ? '33.3333%' : '50%',

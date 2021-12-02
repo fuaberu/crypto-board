@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { useGetCryptoHistoryQuery } from '../services/cryptoApi';
-import millify from 'millify';
 import {
 	Chart as ChartJS,
 	CategoryScale,
@@ -60,7 +59,7 @@ const LineGraph = ({ coinId, period, color }) => {
 				borderWidth: 2,
 				pointHoverBackgroundColor: '#000',
 				pointRadius: 0,
-				borderColor: color,
+				borderColor: color || '#1890ff',
 				backgroundColor: '#f0f2f5',
 			},
 		],

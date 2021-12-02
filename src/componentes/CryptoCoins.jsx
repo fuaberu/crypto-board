@@ -22,7 +22,6 @@ const CryptoCoins = () => {
 		const filteredData = data?.data.coins.filter((coin) =>
 			coin?.name.toLowerCase().includes(search.toLowerCase())
 		);
-		console.log(filteredData);
 		setDisplayData(filteredData);
 	}, [data, search]);
 

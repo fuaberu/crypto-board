@@ -14,8 +14,6 @@ const Exchanges = () => {
 
 	if (isFetching) return <Spin size="large" />;
 
-	console.log(data);
-
 	return (
 		<>
 			<Row style={{ paddingLeft: 12, paddingRight: 16, textAlign: 'center' }}>

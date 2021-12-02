@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { Home, News, Detaile, Exchanges } from './pages';
@@ -6,7 +6,7 @@ import BaseLayout from './componentes/BaseLayout';
 import CryptoCoins from './componentes/CryptoCoins';
 
 function App() {
-	const [theme, setTheme] = useState('Light');
+	// const [theme, setTheme] = useState('Light');
 
 	return (
 		<div className="App">
