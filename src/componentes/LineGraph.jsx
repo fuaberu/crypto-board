@@ -23,7 +23,7 @@ ChartJS.register(
 	Legend
 );
 
-const LineGraph = ({ coinId, period, color }) => {
+const LineGraph = ({ coinId, period, color, theme }) => {
 	const { data, isFetching } = useGetCryptoHistoryQuery({ coinId, period });
 
 	const coinPrice = [];
@@ -56,7 +56,7 @@ const LineGraph = ({ coinId, period, color }) => {
 				data: coinPrice,
 				fill: false,
 				borderWidth: 2,
-				pointHoverBackgroundColor: '#000',
+				pointHoverBackgroundColor: theme === 'dark' ? '#fff' : '#000',
 				pointRadius: 0,
 				borderColor: color || '#1890ff',
 				backgroundColor: '#f0f2f5',
