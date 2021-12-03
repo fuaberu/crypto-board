@@ -9,16 +9,19 @@ import {
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const Navbar = () => {
+const Navbar = ({ collapsed, screenSize }) => {
 	const theme = useSelector((state) => state.theme.value);
+	console.log(collapsed, screenSize);
 
 	return (
-		<div className="nav-container">
-			<div className="logo-container">
-				<Typography.Title level={2} style={{ margin: '0.3em' }}>
-					<Link to="/">CryptoBoard</Link>
-				</Typography.Title>
-			</div>
+		<>
+			{!collapsed ? (
+				<div className="logo-container">
+					<Typography.Title level={2} style={{ margin: '0.3em' }}>
+						<Link to="/">CryptoBoard</Link>
+					</Typography.Title>
+				</div>
+			) : null}
 			<Menu theme={theme}>
 				<Menu.Item key={1} icon={<HomeOutlined />}>
 					<Link to="/">Home</Link>
@@ -33,7 +36,7 @@ const Navbar = () => {
 					<Link to="/cryptocurrencies">Cryptocurrencies</Link>
 				</Menu.Item>
 			</Menu>
-		</div>
+		</>
 	);
 };
 

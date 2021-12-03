@@ -20,6 +20,9 @@ const Exchanges = ({ theme }) => {
 
 	return (
 		<>
+			<Typography.Title level={2} style={darkModeColor}>
+				Exchanges
+			</Typography.Title>
 			<Row style={{ paddingLeft: 12, paddingRight: 16, textAlign: 'center' }}>
 				<Col span={3}>
 					<Typography.Title level={5} style={darkModeColor}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Switch } from 'antd';
 
 import { Navbar, LayoutFooter } from './';
@@ -9,13 +9,37 @@ import { change } from '../features/theme/themeSlice';
 const { Footer, Content, Sider } = Layout;
 
 const BaseLayout = () => {
+	const [collapsed, setCollapsed] = useState(true);
+	const [screenSize, setScreenSize] = useState(null);
+
+	//check if screen resize
+	useEffect(() => {
+		const handelScreen = () => setScreenSize(window.innerWidth);
+		window.addEventListener('resize', handelScreen());
+
+		handelScreen();
+
+		return () => window.removeEventListener('resize', handelScreen());
+	}, []);
+
 	const state = useSelector((state) => state.theme);
-	console.log(state);
 	const dispatch = useDispatch();
+
+	const menuColapsed = {
+		position: 'fixed',
+		minHeight: '100%',
+		zIndex: 1,
+	};
 	return (
 		<Layout>
-			<Sider theme={state.value}>
-				<Navbar />
+			<Sider
+				collapsible
+				onCollapse={() => setCollapsed(!collapsed)}
+				defaultCollapsed={true}
+				collapsedWidth={50}
+				style={!collapsed && screenSize < 768 ? menuColapsed : {}}
+			>
+				<Navbar collapsed={collapsed} screenSize={screenSize} />
 			</Sider>
 			<Layout>
 				<Switch
@@ -23,7 +47,7 @@ const BaseLayout = () => {
 					checked={state.value === 'dark' ? true : false}
 					style={{ width: '35px', position: 'absolute', top: '5px', right: '5px' }}
 				/>
-				<Content>
+				<Content style={!collapsed && screenSize < 768 ? { marginLeft: 50 } : {}}>
 					<Layout
 						style={
 							state.value === 'dark'
