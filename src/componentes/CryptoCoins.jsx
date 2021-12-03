@@ -33,53 +33,26 @@ const CryptoCoins = ({ theme }) => {
 
 	return (
 		<div>
-			{pathname !== '/cryptocurrencies' ? (
-				<Space
-					style={{
-						width: '100%',
-						display: 'flex',
-						justifyContent: 'space-between',
-						marginBottom: 15,
-					}}
+			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+				<Typography.Title
+					level={2}
+					style={
+						theme === 'dark' ? { marginBottom: 5, color: '#a6adb4' } : { marginBottom: 5 }
+					}
 				>
-					<Typography.Title
-						level={2}
-						style={
-							theme === 'dark'
-								? { marginBottom: 'auto', color: '#a6adb4' }
-								: { marginBottom: 'auto' }
-						}
-					>
-						Top Cryptocurrencies
-					</Typography.Title>
-					<Button type="primary" onClick={() => setMoreCryptos(!moreCryptos)}>
-						Show more
-					</Button>
-				</Space>
-			) : (
-				<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-					<Typography.Title
-						level={2}
-						style={
-							theme === 'dark'
-								? { marginBottom: 5, color: '#a6adb4' }
-								: { marginBottom: 5 }
-						}
-					>
-						Cryptocurrencies
-					</Typography.Title>
+					Cryptocurrencies
+				</Typography.Title>
 
-					<Input
-						placeholder="Search"
-						value={search}
-						maxLength={400}
-						onChange={(e) => setSearch(e.target.value)}
-						style={{
-							marginBottom: 30,
-						}}
-					/>
-				</div>
-			)}
+				<Input
+					placeholder="Search"
+					value={search}
+					maxLength={400}
+					onChange={(e) => setSearch(e.target.value)}
+					style={{
+						marginBottom: 30,
+					}}
+				/>
+			</div>
 
 			<Row gutter={[24, 24]}>
 				{displayData &&
@@ -128,6 +101,11 @@ const CryptoCoins = ({ theme }) => {
 							</Link>
 						</Col>
 					))}
+				{pathname !== '/cryptocurrencies' ? (
+					<Button type="primary" onClick={() => setMoreCryptos(!moreCryptos)}>
+						Show more
+					</Button>
+				) : null}
 			</Row>
 		</div>
 	);

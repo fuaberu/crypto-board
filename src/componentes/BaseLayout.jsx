@@ -25,9 +25,16 @@ const BaseLayout = () => {
 	const state = useSelector((state) => state.theme);
 	const dispatch = useDispatch();
 
-	const menuColapsed = {
+	const menuCollapsed = {
 		position: 'fixed',
 		minHeight: '100%',
+		zIndex: 1,
+		transition: 'all 0.2s',
+	};
+
+	const smallMenu = {
+		position: 'fixed',
+		height: '100%',
 		zIndex: 1,
 	};
 	return (
@@ -37,7 +44,8 @@ const BaseLayout = () => {
 				onCollapse={() => setCollapsed(!collapsed)}
 				defaultCollapsed={true}
 				collapsedWidth={50}
-				style={!collapsed && screenSize < 768 ? menuColapsed : {}}
+				theme={state.value}
+				style={collapsed ? menuCollapsed : screenSize < 768 ? smallMenu : {}}
 			>
 				<Navbar collapsed={collapsed} screenSize={screenSize} />
 			</Sider>
@@ -47,7 +55,11 @@ const BaseLayout = () => {
 					checked={state.value === 'dark' ? true : false}
 					style={{ width: '35px', position: 'absolute', top: '5px', right: '5px' }}
 				/>
-				<Content style={!collapsed && screenSize < 768 ? { marginLeft: 50 } : {}}>
+				<Content
+					style={
+						screenSize < 768 ? { marginLeft: 50 } : collapsed ? { marginLeft: 50 } : {}
+					}
+				>
 					<Layout
 						style={
 							state.value === 'dark'
