@@ -1,10 +1,10 @@
 # CryptoBoard
 
-CryptoBoard is a cryptocurrencies information board.
+CryptoBoard is a cryptocurrency information board.
 
 The website can be accessed through [this link](https://cryptos-board.netlify.app/).
 
-![CryptoBoard screenshot](https://github.com/fuaberu/my-portfolio/blob/3485346a3dc38558c313d1d0d402c62e8ea0e32d/src/assets/sayHi.png)
+![CryptoBoard screenshot](https://github.com/fuaberu/my-portfolio/blob/279d3b78d62ba27ae57c2ed6e8d81cbcfa2d1779/src/assets/cryptoboard.png)
 
 Features
 --------
