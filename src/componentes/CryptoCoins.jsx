@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Button, Card, Col, Input, Row, Space, Spin, Typography } from 'antd';
+import { Avatar, Button, Card, Col, Input, Row, Spin, Typography } from 'antd';
 import millify from 'millify';
 import { useGetCryptosCoinsQuery } from '../services/cryptoApi';
 import { Link, useLocation } from 'react-router-dom';
@@ -14,7 +14,7 @@ const CryptoCoins = ({ theme }) => {
 	//search input
 	const [search, setSearch] = useState('');
 	//fetched data
-	const { data, isLoading } = useGetCryptosCoinsQuery(moreCryptos ? 100 : 10);
+	const { data, isLoading } = useGetCryptosCoinsQuery(moreCryptos ? 100 : 12);
 
 	const [displayData, setDisplayData] = useState();
 
@@ -37,21 +37,29 @@ const CryptoCoins = ({ theme }) => {
 				<Typography.Title
 					level={2}
 					style={
-						theme === 'dark' ? { marginBottom: 5, color: '#a6adb4' } : { marginBottom: 5 }
+						theme === 'dark'
+							? { marginBottom: 30, color: '#a6adb4' }
+							: { marginBottom: 30 }
 					}
 				>
 					Cryptocurrencies
 				</Typography.Title>
 
-				<Input
-					placeholder="Search"
-					value={search}
-					maxLength={400}
-					onChange={(e) => setSearch(e.target.value)}
-					style={{
-						marginBottom: 30,
-					}}
-				/>
+				{pathname === '/cryptocurrencies' ? (
+					<Input
+						placeholder="Search"
+						value={search}
+						maxLength={400}
+						onChange={(e) => setSearch(e.target.value)}
+						style={
+							theme === 'dark'
+								? { marginBottom: 30, backgroundColor: '#001529', color: '#a6adb4' }
+								: {
+										marginBottom: 30,
+								  }
+						}
+					/>
+				) : null}
 			</div>
 
 			<Row gutter={[24, 24]}>
@@ -101,12 +109,16 @@ const CryptoCoins = ({ theme }) => {
 							</Link>
 						</Col>
 					))}
-				{pathname !== '/cryptocurrencies' ? (
-					<Button type="primary" onClick={() => setMoreCryptos(!moreCryptos)}>
-						Show more
-					</Button>
-				) : null}
 			</Row>
+			{pathname !== '/cryptocurrencies' ? (
+				<Button
+					style={{ marginTop: 16, marginLeft: '50%', transform: 'translatex(-50%)' }}
+					type="primary"
+					onClick={() => setMoreCryptos(!moreCryptos)}
+				>
+					Show more
+				</Button>
+			) : null}
 		</div>
 	);
 };

@@ -53,7 +53,7 @@ const BaseLayout = () => {
 				<Switch
 					onClick={() => dispatch(change(state))}
 					checked={state.value === 'dark' ? true : false}
-					style={{ width: '35px', position: 'absolute', top: '5px', right: '5px' }}
+					style={{ width: '35px', position: 'absolute', top: 15, right: 15 }}
 				/>
 				<Content
 					style={
